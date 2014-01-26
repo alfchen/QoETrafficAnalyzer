@@ -1,0 +1,530 @@
+01-06 20:14:23.405   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:14:23.405   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:14:23.405   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:14:23.405   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:14:23.405   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:14:23.405   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:14:23.405   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:14:23.405   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:14:23.405   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:14:23.405   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:14:23.405   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:14:23.405   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:14:23.405   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:14:23.405   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:14:23.405   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 32 01 4F 00 ..
+01-06 20:14:23.405   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:14:23.405   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:14:23.405   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:14:23.405   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 32 01 4F 00 ..
+01-06 20:14:23.405   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:14:23.405   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:14:23.405   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:14:23.405   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:14:23.405   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:14:23.405   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:14:23.405   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:14:23.405   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1299 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:14:23.405   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=19 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:14:33.736   975   975 D RILJ    : [0123]> REQUEST_GET_NEIGHBORING_CELL_IDS
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: UI --- RIL_REQUEST_GET_NEIGHBORING_CELL_IDS (75) ---> RIL [RID 0, token id 123, data len 0]
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] qmi_ril_fw_create_android_live_params_copy: a-r-id 75, a-data 0, a-data-len 0
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: method 3, datalen 0
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: already waiting for exec 0
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: android_request_param_holder 4209a1a0 hex
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: pending req kind 0 hex, awaitingexec req kind 0 hex
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: token under exec 123
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: pre-exec token id 123, a-r-id 75, audit 0, nrender 0
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] qmi_ril_fw_android_request_render_execution: rendering exec for token id 123
+01-06 20:14:33.736   241   332 I RILC    : qmi_ril(0/241): [main] qcril_reqlist_new_all: [RID 0] Event RIL_REQUEST_GET_NEIGHBORING_CELL_IDS(75), token id 123 [ 0x420a7258], req id 13 : 
+01-06 20:14:33.736   241   332 I RILC    : qmi_ril(0/241): [main] qcril_reqlist_new_all:                        MID 0, pending receipt of QCRIL_EVT_QMI_REQUEST_NEIGHBOR_CELL_INFO, state QCRIL_REQ_AWAITING_MORE_AMSS_EVENTS(4)
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] qcril_reqlist_print_all: [RID 0] ReqList entries :
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] qcril_reqlist_print_all:     RIL_REQUEST_GET_NEIGHBORING_CELL_IDS (75), token id 123 followed 0x0 following 0x0
+01-06 20:14:33.736   241   332 I RILC    : qmi_ril(0/241): [main] qcril_qmi_nas_get_neighboring_cell_ids: completed with 0
+01-06 20:14:33.736   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: dispatch outcome = 0
+01-06 20:14:33.736   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:14:33.736   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 43 
+01-06 20:14:33.736   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 33 01 43 00 ..
+01-06 20:14:33.736   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:14:33.736   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:14:33.736   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 43 
+01-06 20:14:33.736   585   684 E RIL-RAWDATA: 01 13 00 80 03 01 02 33 01 43 00 ..
+01-06 20:14:33.736   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=54
+01-06 20:14:33.736   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_reqlist_find_by_event: [RID 0] Found ReqList entry : RIL_REQUEST_GET_NEIGHBORING_CELL_IDS(75), token id 123, pending QCRIL_EVT_QMI_REQUEST_NEIGHBOR_CELL_INFO (786436)
+01-06 20:14:33.736   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:14:33.736   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_get_neighboring_cells_cb: .. qmi error 13, resultqmi  1, qmi transp_err 0, ril res 2
+01-06 20:14:33.736   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_get_neighboring_cells_cb: .. no network found
+01-06 20:14:33.736   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_send_request_response: UI <--- RIL_REQUEST_GET_NEIGHBORING_CELL_IDS (75) Complete --- RIL [RID 0, Token id 123, Success, Len 0 ]
+01-06 20:14:33.736   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_reqlist_remove_request_pub_from_reqlist: [RID 0] Deleted ReqList entry : token id 123 [0x420a7258]
+01-06 20:14:33.736   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_reqlist_free_req_in_reserved_buffer: clear pointers
+01-06 20:14:33.736   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_reqlist_print_all: [RID 0] ReqList entries : Empty
+01-06 20:14:33.736   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qmi_ril_fw_send_request_response_epilog: token under exec 123, completion token id 123
+01-06 20:14:33.736   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qmi_ril_fw_send_request_response_epilog: postage resp to token id 123, a-r-id 75 (intermed. 75)
+01-06 20:14:33.736   241   735 D RILC    : RIL onRequestComplete: Command channel closed
+01-06 20:14:33.736   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_get_neighboring_cells_cb: completed with 0 with 0 entries
+01-06 20:14:33.736   975  1039 D RILJ    : [0123]< REQUEST_GET_NEIGHBORING_CELL_IDS  
+01-06 20:14:34.297   586   731 D RIL-QC-NETMGR: Entering function netmgr_kif_nl_recv_routing_msg
+01-06 20:14:34.297   586   731 D RIL-QC-NETMGR: Entering function netmgr_nl_recv_msg
+01-06 20:14:34.297   586   731 I RIL-QC-NETMGR: Received nl msg, recvmsg returned 56
+01-06 20:14:34.297   586   731 D RIL-QC-NETMGR: Exiting function netmgr_nl_recv_msg
+01-06 20:14:34.297   586   731 D RIL-QC-NETMGR: Entering function netmgr_exec_get_cmd
+01-06 20:14:34.297   586   731 D RIL-QC-NETMGR: Exiting function netmgr_exec_get_cmd
+01-06 20:14:34.297   586   731 D RIL-QC-NETMGR: Entering function netmgr_exec_put_cmd
+01-06 20:14:34.297   586   731 I RIL-QC-NETMGR: Received command: ID=NETMGR_KIF_MSG_CMD, link=0
+01-06 20:14:34.297   586   731 D RIL-QC-NETMGR: Exiting function netmgr_exec_put_cmd
+01-06 20:14:34.297   586   731 D RIL-QC-NETMGR: Exiting function netmgr_kif_nl_recv_routing_msg
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Entering function netmgr_exec_cmd_process
+01-06 20:14:34.297   586   685 I RIL-QC-NETMGR: Process command: ID=NETMGR_KIF_MSG_CMD, link=0, state=1
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Entering function netmgr_sm_dispatch_kif_msg
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Entering function netmgr_kif_nl_msg_recv_cmd_exec
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Entering function netmgr_nl_decode_nlmsg
+01-06 20:14:34.297   586   685 I RIL-QC-NETMGR: Processing RTM_NEWLINK
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Entering function netmgr_nl_decode_rtm_link
+01-06 20:14:34.297   586   685 I RIL-QC-NETMGR: Metainfo:  Index=13 Family=0 Type=0x1 Change=[0x0] Flags=[0x11043]UP BROADCAST RUNNING MULTICAST LOWER_UP 
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Exiting function netmgr_nl_decode_rtm_link
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Exiting function netmgr_nl_decode_nlmsg
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Rcvd Netlink msg type [16]
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Entering function netmgr_kif_nl_recv_link_msg
+01-06 20:14:34.297   586   685 I RIL-QC-NETMGR: Received RTM_NEWLINK
+01-06 20:14:34.297   586   685 E RIL-QC-NETMGR: unrecognized ifindex 13, disable link
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Exiting function netmgr_kif_nl_recv_link_msg
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Exiting function netmgr_kif_nl_msg_recv_cmd_exec
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Exiting function netmgr_sm_dispatch_kif_msg
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Exiting function netmgr_exec_cmd_process
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Entering function netmgr_kif_nl_msg_recv_cmd_free
+01-06 20:14:34.297   586   685 D RIL-QC-NETMGR: Exiting function netmgr_kif_nl_msg_recv_cmd_free
+01-06 20:14:34.707   975   975 D RILJ    : [0124]> REQUEST_GET_NEIGHBORING_CELL_IDS
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: UI --- RIL_REQUEST_GET_NEIGHBORING_CELL_IDS (75) ---> RIL [RID 0, token id 124, data len 0]
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] qmi_ril_fw_create_android_live_params_copy: a-r-id 75, a-data 0, a-data-len 0
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: method 3, datalen 0
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: already waiting for exec 0
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: android_request_param_holder 4209a1a0 hex
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: pending req kind 0 hex, awaitingexec req kind 0 hex
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: token under exec 124
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: pre-exec token id 124, a-r-id 75, audit 0, nrender 0
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] qmi_ril_fw_android_request_render_execution: rendering exec for token id 124
+01-06 20:14:34.707   241   332 I RILC    : qmi_ril(0/241): [main] qcril_reqlist_new_all: [RID 0] Event RIL_REQUEST_GET_NEIGHBORING_CELL_IDS(75), token id 124 [ 0x420a7258], req id 14 : 
+01-06 20:14:34.707   241   332 I RILC    : qmi_ril(0/241): [main] qcril_reqlist_new_all:                        MID 0, pending receipt of QCRIL_EVT_QMI_REQUEST_NEIGHBOR_CELL_INFO, state QCRIL_REQ_AWAITING_MORE_AMSS_EVENTS(4)
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] qcril_reqlist_print_all: [RID 0] ReqList entries :
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] qcril_reqlist_print_all:     RIL_REQUEST_GET_NEIGHBORING_CELL_IDS (75), token id 124 followed 0x0 following 0x0
+01-06 20:14:34.707   241   332 I RILC    : qmi_ril(0/241): [main] qcril_qmi_nas_get_neighboring_cell_ids: completed with 0
+01-06 20:14:34.707   241   332 D RILC    : qmi_ril(0/241): [main] onRequest: dispatch outcome = 0
+01-06 20:14:34.707   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:14:34.707   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 43 
+01-06 20:14:34.707   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 34 01 43 00 ..
+01-06 20:14:34.707   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:14:34.707   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:14:34.707   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 43 
+01-06 20:14:34.707   585   684 E RIL-RAWDATA: 01 13 00 80 03 01 02 34 01 43 00 ..
+01-06 20:14:34.707   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=54
+01-06 20:14:34.707   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_reqlist_find_by_event: [RID 0] Found ReqList entry : RIL_REQUEST_GET_NEIGHBORING_CELL_IDS(75), token id 124, pending QCRIL_EVT_QMI_REQUEST_NEIGHBOR_CELL_INFO (786436)
+01-06 20:14:34.707   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:14:34.707   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_get_neighboring_cells_cb: .. qmi error 13, resultqmi  1, qmi transp_err 0, ril res 2
+01-06 20:14:34.707   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_get_neighboring_cells_cb: .. no network found
+01-06 20:14:34.707   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_send_request_response: UI <--- RIL_REQUEST_GET_NEIGHBORING_CELL_IDS (75) Complete --- RIL [RID 0, Token id 124, Success, Len 0 ]
+01-06 20:14:34.707   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_reqlist_remove_request_pub_from_reqlist: [RID 0] Deleted ReqList entry : token id 124 [0x420a7258]
+01-06 20:14:34.707   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_reqlist_free_req_in_reserved_buffer: clear pointers
+01-06 20:14:34.707   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_reqlist_print_all: [RID 0] ReqList entries : Empty
+01-06 20:14:34.707   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qmi_ril_fw_send_request_response_epilog: token under exec 124, completion token id 124
+01-06 20:14:34.707   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qmi_ril_fw_send_request_response_epilog: postage resp to token id 124, a-r-id 75 (intermed. 75)
+01-06 20:14:34.707   241   735 D RILC    : RIL onRequestComplete: Command channel closed
+01-06 20:14:34.707   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_get_neighboring_cells_cb: completed with 0 with 0 entries
+01-06 20:14:34.707   975  1039 D RILJ    : [0124]< REQUEST_GET_NEIGHBORING_CELL_IDS  
+01-06 20:14:35.438   586   731 D RIL-QC-NETMGR: Entering function netmgr_kif_nl_recv_routing_msg
+01-06 20:14:35.438   586   731 D RIL-QC-NETMGR: Entering function netmgr_nl_recv_msg
+01-06 20:14:35.438   586   731 I RIL-QC-NETMGR: Received nl msg, recvmsg returned 56
+01-06 20:14:35.438   586   731 D RIL-QC-NETMGR: Exiting function netmgr_nl_recv_msg
+01-06 20:14:35.438   586   731 D RIL-QC-NETMGR: Entering function netmgr_exec_get_cmd
+01-06 20:14:35.438   586   731 D RIL-QC-NETMGR: Exiting function netmgr_exec_get_cmd
+01-06 20:14:35.438   586   731 D RIL-QC-NETMGR: Entering function netmgr_exec_put_cmd
+01-06 20:14:35.438   586   731 I RIL-QC-NETMGR: Received command: ID=NETMGR_KIF_MSG_CMD, link=0
+01-06 20:14:35.438   586   731 D RIL-QC-NETMGR: Exiting function netmgr_exec_put_cmd
+01-06 20:14:35.438   586   731 D RIL-QC-NETMGR: Exiting function netmgr_kif_nl_recv_routing_msg
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Entering function netmgr_exec_cmd_process
+01-06 20:14:35.438   586   685 I RIL-QC-NETMGR: Process command: ID=NETMGR_KIF_MSG_CMD, link=0, state=1
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Entering function netmgr_sm_dispatch_kif_msg
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Entering function netmgr_kif_nl_msg_recv_cmd_exec
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Entering function netmgr_nl_decode_nlmsg
+01-06 20:14:35.438   586   685 I RIL-QC-NETMGR: Processing RTM_NEWLINK
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Entering function netmgr_nl_decode_rtm_link
+01-06 20:14:35.438   586   685 I RIL-QC-NETMGR: Metainfo:  Index=13 Family=0 Type=0x1 Change=[0x0] Flags=[0x11043]UP BROADCAST RUNNING MULTICAST LOWER_UP 
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Exiting function netmgr_nl_decode_rtm_link
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Exiting function netmgr_nl_decode_nlmsg
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Rcvd Netlink msg type [16]
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Entering function netmgr_kif_nl_recv_link_msg
+01-06 20:14:35.438   586   685 I RIL-QC-NETMGR: Received RTM_NEWLINK
+01-06 20:14:35.438   586   685 E RIL-QC-NETMGR: unrecognized ifindex 13, disable link
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Exiting function netmgr_kif_nl_recv_link_msg
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Exiting function netmgr_kif_nl_msg_recv_cmd_exec
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Exiting function netmgr_sm_dispatch_kif_msg
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Exiting function netmgr_exec_cmd_process
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Entering function netmgr_kif_nl_msg_recv_cmd_free
+01-06 20:14:35.438   586   685 D RIL-QC-NETMGR: Exiting function netmgr_kif_nl_msg_recv_cmd_free
+01-06 20:14:57.982   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:14:57.982   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:14:57.982   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:14:57.982   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:14:57.982   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:14:57.982   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:14:57.982   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:14:57.982   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:14:57.982   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:14:57.982   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:14:57.982   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:14:57.982   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:14:57.982   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:14:57.982   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:14:57.982   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 35 01 4F 00 ..
+01-06 20:14:57.982   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:14:57.982   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:14:57.982   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:14:57.982   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 35 01 4F 00 ..
+01-06 20:14:57.982   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:14:57.982   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:14:57.982   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:14:57.982   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:14:57.982   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:14:57.982   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:14:57.982   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:14:57.982   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1299 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:14:57.982   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=19 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:15:04.989   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:15:04.989   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:15:04.989   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:15:04.989   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:15:04.989   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:04.989   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:04.989   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:15:04.989   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:15:04.989   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:15:04.989   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:15:04.989   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:15:04.989   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:15:04.989   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:15:04.989   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:04.989   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 36 01 4F 00 ..
+01-06 20:15:04.989   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:15:04.989   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:15:04.989   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:04.989   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 36 01 4F 00 ..
+01-06 20:15:04.989   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:15:04.989   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:15:04.989   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:15:04.989   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:15:04.989   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:15:04.989   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:15:04.989   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:15:04.989   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1299 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:15:04.989   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=19 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:15:10.996   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:15:10.996   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:15:10.996   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:15:10.996   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:15:10.996   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:10.996   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:10.996   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:15:10.996   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:15:10.996   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:15:10.996   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:15:10.996   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:15:10.996   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:15:10.996   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:15:10.996   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:15:10.996   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:15:10.996   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:15:10.996   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:10.996   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 37 01 4F 00 ..
+01-06 20:15:10.996   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:15:10.996   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:15:11.006   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:11.006   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 37 01 4F 00 ..
+01-06 20:15:11.006   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:15:11.006   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:15:11.006   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:15:11.006   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:15:11.006   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:15:11.006   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:15:11.006   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:15:11.006   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:15:11.006   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:15:11.006   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:15:11.006   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:15:11.006   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:15:11.006   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1041 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:15:11.006   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=17 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:15:11.987   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:15:11.987   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:15:11.987   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:15:11.987   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:15:11.987   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:11.987   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:11.987   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:15:11.987   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:15:11.987   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:15:11.987   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:15:11.987   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:15:11.987   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:15:11.987   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:15:11.987   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:11.987   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 38 01 4F 00 ..
+01-06 20:15:11.987   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:15:11.987   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:15:11.987   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:11.987   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 38 01 4F 00 ..
+01-06 20:15:11.987   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:15:11.987   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:15:11.987   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:15:11.987   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:15:11.987   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:15:11.987   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:15:11.987   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:15:11.987   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1040 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:15:11.987   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=16 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:15:27.393   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:15:27.393   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:15:27.393   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:15:27.393   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:15:27.393   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:27.393   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:27.393   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:15:27.393   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:15:27.393   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:15:27.393   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:15:27.393   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:15:27.393   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:15:27.393   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:15:27.393   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:27.393   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 39 01 4F 00 ..
+01-06 20:15:27.393   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:15:27.393   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:15:27.393   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:27.393   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 39 01 4F 00 ..
+01-06 20:15:27.393   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:15:27.393   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:15:27.393   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:15:27.393   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:15:27.393   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:15:27.393   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:15:27.393   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:15:27.393   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1041 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:15:27.393   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=17 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:15:29.015   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:15:29.015   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:15:29.015   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:15:29.015   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:15:29.015   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:29.015   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:29.015   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:15:29.015   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:15:29.015   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:15:29.015   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:15:29.015   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:15:29.015   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:15:29.015   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:15:29.015   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:29.015   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 3A 01 4F 00 ..
+01-06 20:15:29.015   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:15:29.015   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:15:29.015   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:29.015   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 3A 01 4F 00 ..
+01-06 20:15:29.015   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:15:29.015   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:15:29.015   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:15:29.015   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:15:29.015   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:15:29.015   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:15:29.015   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:15:29.015   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1297 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:15:29.015   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=17 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:15:49.026   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:15:49.026   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:15:49.026   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:15:49.026   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:15:49.026   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:49.026   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:15:49.026   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:15:49.026   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:15:49.026   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:15:49.026   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:15:49.036   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:15:49.036   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:15:49.036   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:15:49.036   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:15:49.036   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:15:49.036   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:15:49.036   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:49.036   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 3B 01 4F 00 ..
+01-06 20:15:49.036   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:15:49.036   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:15:49.036   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:15:49.036   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 3B 01 4F 00 ..
+01-06 20:15:49.036   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:15:49.036   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:15:49.036   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:15:49.036   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:15:49.036   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:15:49.036   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:15:49.036   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:15:49.036   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:15:49.036   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:15:49.036   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:15:49.036   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:15:49.036   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:15:49.036   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1041 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:15:49.036   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=17 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:16:06.045   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:16:06.045   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:16:06.045   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:16:06.045   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:16:06.045   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:16:06.045   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:16:06.045   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:16:06.045   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:16:06.045   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:16:06.045   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:16:06.045   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:16:06.045   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:16:06.045   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:16:06.045   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:16:06.045   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 3C 01 4F 00 ..
+01-06 20:16:06.045   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:16:06.045   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:16:06.045   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:16:06.045   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 3C 01 4F 00 ..
+01-06 20:16:06.045   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:16:06.045   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:16:06.045   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:16:06.045   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:16:06.045   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:16:06.045   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:16:06.045   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:16:06.045   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1297 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:16:06.045   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=17 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:16:10.039   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:16:10.039   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:16:10.039   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:16:10.039   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:16:10.039   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:16:10.039   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:16:10.039   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:16:10.039   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:16:10.039   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:16:10.039   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:16:10.039   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:16:10.039   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:16:10.039   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:16:10.039   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:16:10.039   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 3D 01 4F 00 ..
+01-06 20:16:10.039   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:16:10.039   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:16:10.039   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:16:10.039   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 3D 01 4F 00 ..
+01-06 20:16:10.039   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:16:10.039   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:16:10.039   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:16:10.039   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:16:10.039   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:16:10.039   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:16:10.039   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:16:10.039   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1299 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:16:10.039   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=19 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1
+01-06 20:16:21.151   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 51 
+01-06 20:16:21.151   585   684 E RIL-RAWDATA: 01 12 00 80 03 01 04 00 00 51 00 ..
+01-06 20:16:21.151   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=53
+01-06 20:16:21.151   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: invoked msg 0x51
+01-06 20:16:21.151   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:16:21.151   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_is_considered_registered: .. cache valid 1
+01-06 20:16:21.151   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: Event [QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, a000a] data was NULL
+01-06 20:16:21.151   241   735 D RILC    : qmi_ril(0/241): [qmi_cb] qcril_event_queue: RID 0 MID 0 Queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (0 bytes)(obj 0x420a7478)
+01-06 20:16:21.151   241   735 I RILC    : qmi_ril(0/241): [qmi_cb] qcril_qmi_nas_unsolicited_indication_cb: .. operational state 3
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: 1 items on queue
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: RID 0 MID 0 De-queued event QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE (655370)(obj 0x420a7478)
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qcril_process_event: RIL <--- QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE(655370), RID 0, MID 0 --- AMSS
+01-06 20:16:21.151   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity sign info GSM 0, WCDMA 0, TDSCDMA 0, 1x 0, HRPD 0, LTE 0
+01-06 20:16:21.151   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: validity err rate GSM 0, WCDMA 1, TDSCDMA 0
+01-06 20:16:21.151   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..qmi_request_need_sig_info-1, qmi_request_need_err_rate-0
+01-06 20:16:21.151   585   585 D RIL-QMI : qmuxd: RX 47 bytes on fd=22 from qmux_client_id=2
+01-06 20:16:21.151   585   585 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:16:21.151   585   585 E RIL-RAWDATA: 01 0C 00 00 03 01 00 3E 01 4F 00 ..
+01-06 20:16:21.151   585   585 E RIL-QMI : [SMDPORT] >> BEFORE, Write SMD Port [fd = 10] [msg_len = 13]
+01-06 20:16:21.151   585   585 E RIL-QMI : [SMDPORT] << AFTER, Write SMD Port [rc = 0]
+01-06 20:16:21.151   585   684 E RIL-RAWDATA: service_ID = 3, message_ID = 4f 
+01-06 20:16:21.151   585   684 E RIL-RAWDATA: 01 1E 00 80 03 01 02 3E 01 4F 00 ..
+01-06 20:16:21.151   585   684 D RIL-QMI : qmuxd: TX message on fd=22, to clientID = 2, len=65
+01-06 20:16:21.151   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_util_convert_qmi_response_codes_to_ril_result_ex: ctx check 0
+01-06 20:16:21.151   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_fetch_signal_strength_observations: ..sign info fetch res 0, 0, 0
+01-06 20:16:21.151   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. subfetch sig strength info 0
+01-06 20:16:21.151   241   374 I RILC    : qmi_ril(0/241): [event] qcril_qmi_nas_propagate_known_signal_strength_ind: .. conf res 0
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] >> get the peding LOCK - qcril_send_unsol_response 
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_lock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_lock - Before Count  : 0
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response_epilog: UI <--- RIL_UNSOL_SIGNAL_STRENGTH (1009) --- RIL [RID 0, Len 52, (null)]
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qcril_send_unsol_response: [DEADLOCK-DEBUG] << get the peding UNLOCK - qcril_send_unsol_response 
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qmi_ril_android_pending_unsol_resp_unlock: [DEADLOCK-DEBUG] qmi_ril_android_pending_unsol_resp_unlock - Before Count  : 1
+01-06 20:16:21.151   241   374 I RILC    : qmi_ril(0/241): [event] qcril_process_event: Exit QCRIL_EVT_QMI_NAS_SIG_STRENGTH_UPDATE, err_no 0
+01-06 20:16:21.151   241   374 D RILC    : qmi_ril(0/241): [event] qcril_event_main: Waiting...
+01-06 20:16:21.151   975  1039 D RILJ    : responseSignalStength BEFORE: mode=raw gsmDbm=1302 gsmEcio=0 lteSignalStrength=99 lteRsrp=2147483647 lteRsrq=2147483647 lteRssnr=2147483647 lteCqi=2147483647
+01-06 20:16:21.151   975  1039 D RILJ    : responseSignalStength AFTER: mode=raw gsmDbm=22 gsmEcio=-1 lteSignalStrength=-1 lteRsrp=-1 lteRsrq=-1 lteRssnr=-1 lteCqi=-1

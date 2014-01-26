@@ -1,0 +1,19 @@
+
+Time: Jan 25, 2014 8:18:26 PM
+TestCase: 2PhotoFromCameraWithoutLocation;
+Result: Fail because nothing updated in news feeds;
+
+Time: Jan 25, 2014 8:19:53 PM
+TestCase: 2PhotoFromCameraWithLocation;
+Result: Fail because nothing updated in news feeds;
+
+Time: Jan 25, 2014 8:21:49 PM
+TestCase: UpdateStatus;
+Result: Succeed;
+
+Time: Jan 25, 2014 8:22:13 PM
+TestCase: CheckIn;
+Result: Fail because cannot find location list;
+
+Time: Jan 25, 2014 8:22:45 PM
+TestCase: 2PhotoFromGalleryWithoutLocation;

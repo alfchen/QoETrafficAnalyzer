@@ -1,0 +1,16 @@
+"Logfile name","Network Type","Average Packet Inter-Arrival Time","Packet Inter-Arrival Greater than 0.5s","Device Radio State when Packet Inter-Arrival Time is Greater than 5s","DNS Query No.","DNS Query Name","DNS Query Response Time (s)","TCP Flow No.","TCP Flow Average Packet Inter-Arrival Time","TCP Flow Connection Setup Time (s)","TCP Flow # of Retransmissions from Device to Server","TCP Flow # of Retransmissions Bytes from Device to Server","TCP Flow # of Retransmissions from Server to Device","TCP Flow # of Retransmissions Bytes from Server to Device"
+"20140106_20-14-19","WiFi",0.0591337,0.0108447,"IDLE->CONNECTED",0,"graph.facebook.com",0.036777,0,0.257234,0.051182,0,0,0,0
+,,,,"CONNECTED",1,"orcart.facebook.com",0.0217609,1,1.71183,0.037967,2,846,1,1200
+,,,,,2,"api.facebook.com",0.029727,2,0.0247477,0.0341518,0,0,0,0
+,,,,,3,"api-read.facebook.com",0.0365639,3,1.58196,0.139752,0,0,0,0
+,,,,,4,"fbcdn-sphotos-e-a.akamaihd.net",0.039341,4,0.116206,0.0273769,25,34782,4,3853
+,,,,,5,"fbexternal-a.akamaihd.net",0.0377841,5,2.12321,0.111308,1,724,0,0
+,,,,,6,"fbcdn-sphotos-b-a.akamaihd.net",5.0427,6,0.00633745,0.024081,1,310,10,14385
+,,,,,7,"fbcdn-profile-a.akamaihd.net",5.0372,7,0.0222535,0.0273769,0,0,0,0
+,,,,,8,"api-read.facebook.com",0.015352,8,0.00409752,0.0386999,0,0,0,0
+,,,,,9,"scontent-b-ord.xx.fbcdn.net",0.0172441,9,2.03054,1.63043,0,0,0,0
+,,,,,10,"scontent-a-ord.xx.fbcdn.net",0.0162671,10,0.18809,3.0535,1,122,0,0
+,,,,,,,,11,0.0448098,0.044621,1,122,0,0
+,,,,,,,,12,0.00496074,0.022768,1,399,12,17376
+,,,,,,,,13,0.018596,0.022646,0,0,3,3075
+,,,,,,,,,,,,,,

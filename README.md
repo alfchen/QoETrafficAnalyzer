@@ -13,7 +13,7 @@ To run the get the QoE metrics,
 ###Command###
 To run QoE traffic Analyzer:    
  make  
- ./qoetranalyzer <trace list file name> <output file folder name> 
+ ./qoetranalyzer \<trace list file name\> \<output file folder name\> 
 
 ##Example##
  ./qoetranalyzer ./sampledata/traceList ./sampledata/output/

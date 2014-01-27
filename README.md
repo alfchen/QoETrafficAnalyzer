@@ -4,6 +4,7 @@ QoETrafficAnalyzer
 QoETrafficAnalyzer for T-Mobile Project
 
 ##Usage##
+
 To run the get the QoE metrics, 
 1. generate the the trace files using AROandAppController application. 
 2. use a trace list file to specify which traces are of interest. 

@@ -1,0 +1,19 @@
+
+Time: Feb 3, 2014 10:36:47 PM
+TestCase: 2PhotoFromCameraWithoutLocation;
+Result: Succeed;
+
+Time: Feb 3, 2014 10:37:58 PM
+TestCase: 2PhotoFromCameraWithLocation;
+Result: Fail because cannot find location list;
+
+Time: Feb 3, 2014 10:38:58 PM
+TestCase: UpdateStatus;
+Result: Succeed;
+
+Time: Feb 3, 2014 10:39:45 PM
+TestCase: CheckIn;
+Result: Fail because cannot find location list;
+
+Time: Feb 3, 2014 10:41:09 PM
+TestCase: 2PhotoFromGalleryWithoutLocation;

@@ -1,7 +1,0 @@
-AppController_controlIdleTime=600
-AppController_appName=Facebook
-Facebook_updateStatusWaitTime=5000
-Facebook_uploadPhotoWaitTime=20000
-Facebook_checkInWaitTime=5000
-Facebook_testcaseIdleTime=10000
-Facebook_randomChoosePhoto=0

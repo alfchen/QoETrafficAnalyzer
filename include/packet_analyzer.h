@@ -24,6 +24,8 @@ public:
     void init();
     string getNetworkType(string datafolder);
     string trimNameFormat(string fdr);
+    int readApplicationMap(string tracefile, string &currfolder);
+    int readAppBehaviorLog(string tracefile, string &currfolder);
     void setOutputFileFolder(string fdr);
     string getLastFolder(string s);
 	void checkSystem();

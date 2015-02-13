@@ -14,6 +14,7 @@
 class Context {
 private:
 	vector<string> appNameMap;
+	vector<string> appBehaviorLog;
 	int ETHER_HDR_LEN;
 public:
     Context();
@@ -23,6 +24,11 @@ public:
     void addAppName(string appname);
     void clearAppNameMap();
     string getAppNameByIndex(int index);
+
+    vector<string> getAppBehaviorLog();
+    void addAppBehavior(string appbehavior);
+    void clearAppBehaviorLog();
+    string getAppBehaviorByIndex(int index);
 
 };
 

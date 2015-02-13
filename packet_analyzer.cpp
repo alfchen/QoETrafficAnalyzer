@@ -313,6 +313,41 @@ string PacketAnalyzer::trimNameFormat(string fdr){
     return fdr.substr(0,pos+1);
 }
 
+int PacketAnalyzer::readApplicationMap(string tracefile, string &currfolder){
+    string tmpfolder, tmp_s;
+    tmpfolder = getFolder(tracefile);
+    tmpfolder += "/appname";
+    if (tmpfolder.compare(currfolder) != 0) {
+        currfolder = tmpfolder;
+    //	cout << "Folder Name: " << currfolder << endl;
+        mTraceCtx.clearAppNameMap();
+
+        ifstream appNameFile(tmpfolder.c_str());
+        while (getline(appNameFile, tmp_s)) {
+            mTraceCtx.addAppName(tmp_s);
+        }
+    }
+    return 0;
+}
+
+int PacketAnalyzer::readAppBehaviorLog(string tracefile, string &currfolder){
+    string tmpfolder, tmp_s;
+    tmpfolder = getFolder(tracefile);
+    tmpfolder += "/AppBehaviorLog";
+    if (tmpfolder.compare(currfolder) != 0) {
+        currfolder = tmpfolder;
+    //	cout << "Folder Name: " << currfolder << endl;
+        mTraceCtx.clearAppBehaviorLog();
+
+        ifstream appBehaviorFile(tmpfolder.c_str());
+        while (getline(appBehaviorFile, tmp_s)) {
+    //        cout<<tmp_s<<endl;
+            mTraceCtx.addAppBehavior(tmp_s);
+        }
+    }
+    return 0;
+}
+
 void PacketAnalyzer::run() {
 	// read packet
 	char errbuf[PCAP_ERRBUF_SIZE];
@@ -340,6 +375,11 @@ void PacketAnalyzer::run() {
 		}
 
 
+        // read application map
+        readApplicationMap(tracefile, currfolder);
+
+        // read app bevavior log
+        readAppBehaviorLog(tracefile, currfolder);
 
 	/*	// read application map
 		tmpfolder = getFolder(tracefile);
@@ -378,6 +418,18 @@ void PacketAnalyzer::run() {
 		pcap_close(trace_file);
         outputTraceAnalyze(datafolder,firsttime);
   //	 }
+  /*
+        printf("Average period result:\n");
+        printf("pktcnt: %f datalen: %f ",\
+               mTraceAnalyze.period_pktcnt/mTraceAnalyze.periodnum, mTraceAnalyze.period_datacnt/mTraceAnalyze.periodnum);
+        printf("net: %f ui: %f ui_before: %f ui_after: %f clt: %f %f svr %f %f\n",\
+               mTraceAnalyze.period_net_time/mTraceAnalyze.periodnum,
+               mTraceAnalyze.period_ui_time/mTraceAnalyze.periodnum,\
+               mTraceAnalyze.period_ui_before/mTraceAnalyze.periodnum,mTraceAnalyze.period_ui_after/mTraceAnalyze.periodnum, \
+               mTraceAnalyze.period_cltsndnum/mTraceAnalyze.periodnum, mTraceAnalyze.period_cltsndbytes/mTraceAnalyze.periodnum,\
+               mTraceAnalyze.period_svrsndnum/mTraceAnalyze.periodnum, mTraceAnalyze.period_svrsndbytes/mTraceAnalyze.periodnum);
+        printf("\n");
+        */
 
         if (firsttime==1) firsttime=0;
 		trace_count++;

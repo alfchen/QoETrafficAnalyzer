@@ -59,7 +59,7 @@ struct QUERY
 	struct QUESTION *ques;
 };
 
-#define MAXURLNUM 10
+#define MAXURLNUM 15
 #define MAXANSNUM 50
 struct DNSQueryComb{
     double ts;

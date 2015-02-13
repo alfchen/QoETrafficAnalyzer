@@ -7,13 +7,18 @@ TCPFlowStat::TCPFlowStat(){
 void TCPFlowStat::clearData(){
     tcpconnstate=0;
     pktcnt=0;
+    datacnt=0;
+    periodcollectmod=0;
     simulsyn=0;
     simulsynackstate=SIMUL_SYNACK_NOT_RECEIVED;
 
     tcpconnsetuptime=0;
     cltretxbytes=0; svrretxbytes=0;
     cltretxnum=0; svrretxnum=0;
+    cltsndbytes=0; svrsndbytes=0;
+    cltsndnum=0; svrsndnum=0;
     lastpacketarrivaltime=-1;
+    lastdatapacketarrivaltime=-1;
 }
 
 
@@ -64,6 +69,15 @@ void TCPFlowStat::swapcltsvr(){
     u_int ti=ti=cltseq; cltseq=svrseq; svrseq=ti;
     ti=cltackseq; cltackseq=svrackseq; svrackseq=ti;
     ti=cltinitseq; cltinitseq=svrinitseq; svrinitseq=ti;
+
+    int tii=cltsndbytes; cltsndbytes=svrsndbytes; svrsndbytes=tii;
+    tii=cltsndnum; cltsndnum=svrsndnum; svrsndnum=tii;
+
+    tii=cltretxbytes; cltretxbytes=svrretxbytes; svrretxbytes=tii;
+    tii=cltretxnum; cltretxnum=svrretxnum; svrretxnum=tii;
+
+    tii=period_cltsndbytes; period_cltsndbytes=period_svrsndbytes; period_svrsndbytes=tii;
+    tii=period_cltsndnum; period_cltsndnum=period_svrsndnum; period_svrsndnum=tii;
 };
 
 void TCPFlowStat::printStat(){
@@ -73,18 +87,87 @@ void TCPFlowStat::printStat(){
                        cltip.c_str(),svrip.c_str(), cltport,svrport,cltseq,cltackseq,svrseq,svrackseq);
 }
 
-void TCPFlowStat::addPacket(string ip_src, string ip_dst, int ippayloadlen, struct tcphdr* tcphdr, double ts){
+void TCPFlowStat::clearPeriodCollectData(){
+    period_pktcnt=0;
+    period_datacnt=0;
+    period_cltsndbytes=0;
+    period_svrsndbytes=0;
+    period_cltsndnum=0;
+    period_svrsndnum=0;
+    period_firstpacketarrivaltime=-1;
+    period_firstdatapacketarrivaltime=-1;
+    period_lastpacketarrivaltime=-1;
+    period_lastdatapacketarrivaltime=-1;
+}
+
+void TCPFlowStat::endPeriodCollect(){
+    periodcollectmod=0;
+}
+
+void TCPFlowStat::addPacket(string ip_src, string ip_dst, int ippayloadlen, struct tcphdr* tcphdr, double ts, int pcappktcnt, bool inSFrange){
     if (!isNewFlow(ip_src, ip_dst, tcphdr) && isMyPacket(ip_src, ip_dst, tcphdr)!=1) return;
     int pktdir=getPacketDirection(ip_src, ip_dst, tcphdr->source, tcphdr->dest);
     int tcpdatalen=ippayloadlen-tcphdr->doff*4;
 
     pktcnt++;
+    datacnt+=tcpdatalen;
+
     //packet inter-arrival time
     if (lastpacketarrivaltime!=-1){
         double iat=ts-lastpacketarrivaltime;
         avepacketinterarrivaltime=(avepacketinterarrivaltime*(pktcnt-2)+iat)/(pktcnt-1);
     }
     lastpacketarrivaltime=ts;
+    if (tcpdatalen>0){
+        lastdatapacketarrivaltime=ts;
+    }
+
+    if (periodcollectmod==0 && inSFrange){
+    //start period collection
+        periodcollectmod=1;
+        clearPeriodCollectData();
+     //   printf("#%d %f start period %d %d\n", ts, pcappktcnt, tcphdr->source, tcphdr->dest);
+
+    }
+    if (periodcollectmod==1 && !inSFrange){
+    //finish period collection
+        periodcollectmod=0;
+     //   printf("#%d %f stop period %d %d\n", ts, pcappktcnt, tcphdr->source, tcphdr->dest);
+    }
+
+    //period data
+    if (periodcollectmod==1){
+        period_pktcnt++;
+        period_datacnt+=tcpdatalen;
+        if (period_firstpacketarrivaltime==-1)
+          period_firstpacketarrivaltime=ts;
+        if (period_firstdatapacketarrivaltime==-1 && tcpdatalen>0)
+          period_firstdatapacketarrivaltime=ts;
+
+        period_lastpacketarrivaltime=ts;
+        if (tcpdatalen>0){
+          period_lastdatapacketarrivaltime=ts;
+        }
+        //downlink/uplink traffic calculation
+        if (pktdir==PKTSENDER_CLT){
+            period_cltsndbytes+=tcpdatalen;
+            period_cltsndnum+=1;
+        }
+        else if (pktdir==PKTSENDER_SVR){
+            period_svrsndbytes+=tcpdatalen;
+            period_svrsndnum+=1;
+        }
+    }
+
+    //downlink/uplink traffic calculation
+    if (pktdir==PKTSENDER_CLT){
+        cltsndbytes+=tcpdatalen;
+        cltsndnum+=1;
+    }
+    else if (pktdir==PKTSENDER_SVR){
+        svrsndbytes+=tcpdatalen;
+        svrsndnum+=1;
+    }
 
     switch (tcpconnstate){
         case TCPCONSTATE_CLOSED: {
@@ -102,7 +185,7 @@ void TCPFlowStat::addPacket(string ip_src, string ip_dst, int ippayloadlen, stru
                 tcpconnstate=TCPCONSTATE_SYN_SEND;
             }
             else {
-                printf("Unknown TCP packet.\n");
+                printf("pkt #:%d Unknown TCP packet in TCPCONSTATE_CLOSED.\n",pcappktcnt);
             };
         };break;
         case TCPCONSTATE_SYN_SEND:{
@@ -125,8 +208,11 @@ void TCPFlowStat::addPacket(string ip_src, string ip_dst, int ippayloadlen, stru
                 tcpconnstate=TCPCONSTATE_SYN_RECEIVED;
                 printStat();
             }
+            else if (tcphdr->fin==1 || tcphdr->rst==1){
+                tcpconnstate=TCPCONSTATE_FIN;
+            }
             else{
-                printf("Unknown TCP packet.\n");
+                printf("pkt #:%d Unknown TCP packet in TCPCONSTATE_SYN_SEND.\n", pcappktcnt);
             };
 
         };break;
@@ -184,7 +270,7 @@ void TCPFlowStat::addPacket(string ip_src, string ip_dst, int ippayloadlen, stru
 
             }
             else {
-                printf("Unknown TCP packet.\n");
+                printf("pkt #:%d Unknown TCP packet in TCPCONSTATE_SYN_RECEIVED.\n", pcappktcnt);
             };
         };break;
         case TCPCONSTATE_ESTABLISHED: {
@@ -258,7 +344,7 @@ void TCPFlowStat::addPacket(string ip_src, string ip_dst, int ippayloadlen, stru
 
         };break;
         default: {
-            printf("Unknown TCP connection state.\n");
+            printf("pkt #:%d Unknown TCP connection state.\n",pcappktcnt);
         };break;
     };
 

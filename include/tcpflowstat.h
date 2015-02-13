@@ -44,13 +44,22 @@ public:
 
     int simulsyn, simulsynackstate;
     int flowinitby;
+    int periodcollectmod;
 
     //metrics
-    int pktcnt;
+    int pktcnt,datacnt;
     double tcpconnsetuptime;
     int cltretxbytes,svrretxbytes,cltretxnum,svrretxnum;
+    int cltsndbytes,svrsndbytes,cltsndnum,svrsndnum;
     double avepacketinterarrivaltime;
     double lastpacketarrivaltime;
+    double lastdatapacketarrivaltime;
+
+    //perioddata
+    int period_pktcnt,period_datacnt;
+    int period_cltsndbytes,period_svrsndbytes,period_cltsndnum,period_svrsndnum;
+    double period_firstpacketarrivaltime, period_firstdatapacketarrivaltime;
+    double period_lastpacketarrivaltime, period_lastdatapacketarrivaltime;
 
     TCPFlowStat();
     void clearData();
@@ -59,8 +68,10 @@ public:
     int isClient(u_int ipaddr);
     static int isNewFlow(string ip_src, string ip_dst, struct tcphdr* tcphdr);
     int getPacketDirection(string ip_src, string ip_dst, u_short srcport, u_short dstport);
-    void addPacket(string ip_src, string ip_dst, int ippayloadlen, struct tcphdr* tcphdr, double ts);
+    void addPacket(string ip_src, string ip_dst, int ippayloadlen, struct tcphdr* tcphdr, double ts, int pcappktcnt, bool inSFrange);
     int isMyPacket(string ip_src, string ip_dst, struct tcphdr* tcphdr);
+    void clearPeriodCollectData();
+    void endPeriodCollect();
 
 };
 

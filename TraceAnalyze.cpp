@@ -14,6 +14,11 @@ void TraceAnalyze::clearData(){
     pktcnt=0;
     gt5pktcnt=0;
     aveInterPacketArriveTime=0;
+    flowExpireTime=30;
+    latencySTime=-1;
+    latencySTestname.assign("-1");
+    latencySAction.assign("-1");
+    latencySInd=0;
   /*  for (int i=0;i<tcpflows.size();i++){
       free(tcpflows[i]);
     }
@@ -35,6 +40,19 @@ void TraceAnalyze::clearData(){
     ansdnsquery.clear();
     rrcstate.clearData();
     gt5state.clear();
+    flowNoInLatency.clear();
+
+    periodnum=0;
+    period_pktcnt=0;
+    period_datacnt=0;
+    period_cltsndbytes=0;
+    period_svrsndbytes=0;
+    period_cltsndnum=0;
+    period_svrsndnum=0;
+    period_ui_before=0;
+    period_ui_after=0;
+    period_net_time=0;
+    period_ui_time=0;
 }
 
 double getTime(struct timeval time) {
@@ -84,6 +102,35 @@ void TraceAnalyze::bswapDNS(struct DNS_HEADER* dnshdr){
     dnshdr->ans_count=bswap16(dnshdr->ans_count);
     dnshdr->auth_count=bswap16(dnshdr->auth_count);
     dnshdr->add_count=bswap16(dnshdr->add_count);
+}
+
+vector<char*> TraceAnalyze::getDNSNames(string svrip){
+            vector<char*> outputvec;
+        for (int j=0; j<ansdnsquery.size();j++){
+            bool isthisentry=false;
+            for (int k=0;k<ansdnsquery[j].ansnum;k++){
+         //       printf("compare %s %s\n",(tcpflows[i].svrip).c_str(),(ansdnsquery[j].ansips[k]).c_str());
+                if (svrip.compare(ansdnsquery[j].ansips[k])==0){
+                    isthisentry=true;
+                    break;
+                }
+            }
+            if (isthisentry){
+            for (int k=0;k<ansdnsquery[j].urlsnum;k++){
+                bool invec=false;
+                for (int tt=0;tt<outputvec.size();tt++){
+                  if (strcmp(outputvec[tt],ansdnsquery[j].urls[k])==0){
+                      invec=true;
+                    break;
+                  }
+                }
+                if (!invec){
+                    outputvec.push_back(ansdnsquery[j].urls[k]);
+                }
+            }
+            }
+        }
+        return outputvec;
 }
 
 void TraceAnalyze::printTitle(ofstream &output){
@@ -156,31 +203,7 @@ int TraceAnalyze::printLine(ofstream &output,int i){
         output<<","<<tcpflows[i].svrip;
         output<<","<<tcpflows[i].svrport;
         output<<",";
-        vector<char*> outputvec;
-        for (int j=0; j<ansdnsquery.size();j++){
-            bool isthisentry=false;
-            for (int k=0;k<ansdnsquery[j].ansnum;k++){
-           //     printf("compare %s %s\n",getStrAddr(tcpflows[i]->svrip),getStrAddr(ansdnsquery[j]->ansips[k]));
-                if (tcpflows[i].svrip.compare(ansdnsquery[j].ansips[k])==0){
-                    isthisentry=true;
-                    break;
-                }
-            }
-            if (isthisentry){
-            for (int k=0;k<ansdnsquery[j].urlsnum;k++){
-                bool invec=false;
-                for (int tt=0;tt<outputvec.size();tt++){
-                  if (strcmp(outputvec[tt],ansdnsquery[j].urls[k])==0){
-                      invec=true;
-                    break;
-                  }
-                }
-                if (!invec){
-                    outputvec.push_back(ansdnsquery[j].urls[k]);
-                }
-            }
-            }
-        }
+        vector<char*> outputvec=getDNSNames(tcpflows[i].svrip);
         for (int tt=0;tt<outputvec.size();tt++){
             output<<outputvec[tt]<<";";
         }
@@ -203,14 +226,193 @@ int TraceAnalyze::printLine(ofstream &output,int i){
     return 0;
 }
 
-void TraceAnalyze::handleTCPFlow(string ip_src, string ip_dst, int ippayloadlen, struct tcphdr* tcphdr, double ts){
+
+int getNextSubString(char* fullstring, int &i, char* substring, char endChar=' '){
+//substring should not be null
+  int strleni=strlen(fullstring);
+  while (i<strleni && (fullstring[i]==' ' || fullstring[i]=='\t')) i++;
+  if (!(i<strleni)){
+      return -1;
+  }
+
+  int j=0;
+  while (i<strleni && fullstring[i]!=' ' \
+          && fullstring[i]!='\t' && fullstring[i]!=endChar)
+    substring[j++]=fullstring[i++];
+  substring[j]='\0';
+  return 0;
+}
+
+void getAppBehavior(string linestr, long &timestmp,char* testname,char* action,char* status){
+    int i=0;
+    char timestmpstr[3000];
+    char* line=(char*)linestr.c_str();
+    getNextSubString(line, i, timestmpstr);
+    sscanf(timestmpstr,"%ld",&timestmp);
+    getNextSubString(line, i, testname);
+    getNextSubString(line, i, action);
+    getNextSubString(line, i, status);
+}
+
+void TraceAnalyze::addToVectorNoDup(vector<int> &vec, int val){
+    for (int i=0;i<vec.size();i++)
+        if (vec[i]==val)
+          return;
+    vec.push_back(val);
+}
+
+bool isTargetServer(string svrip, int svrport){
+    //wifi: 31.13.81.33:443
+    //LTE: 31.13.74.49:443 31.13.74.128:443
+  //  if (!(strcmp(svrip,"31.13.81.33")==0 && svrport==443)) return false;
+
+ //   if (!(svrip.compare("31.13.74.49")==0 && svrport==443 \
+ //         || svrip.compare("31.13.74.128")==0 && svrport==443)) return false;
+
+    return true;
+
+}
+
+bool TraceAnalyze::handleBreakdown(Context &ctx, double ts){
+//return whether it is in user-perceived latency period
+    for (;latencySInd<ctx.getAppBehaviorLog().size();latencySInd++){
+        long timestmp;
+        char testname[3000];
+        char action[3000];
+        char status[3000];
+
+        getAppBehavior(ctx.getAppBehaviorByIndex(latencySInd),timestmp,testname,action,status);
+        double apptime=timestmp/1000.0;
+
+        if (apptime>ts)
+           break;
+
+     //   if (strcmp(testname, "AppPullToUpdate")==0){
+     //       if (strcmp(action, "list_update")==0){
+                if (strcmp(status, "S")==0){
+                    latencySTime=apptime;
+                    latencySTestname.assign(testname);
+                    latencySAction.assign(action);
+                    flowNoInLatency.clear();
+                }
+                if (strcmp(status, "F")==0 \
+                      && latencySTestname.compare(testname)==0 \
+                      && latencySAction.compare(action)==0){
+                    //print info
+                    int tarflowno=-1;
+                    int maxpktcnt=0;
+                    printf("%ld %s %s:\n",timestmp, testname, action);
+                    vector<int> consideredflows;
+                    for (int i=0;i<flowNoInLatency.size();i++){
+                        int flowno=flowNoInLatency[i];
+
+                    //    char ressvr[3000];
+                   //     getStrAddr(tcpflows[flowno].svrip,ressvr);
+                        //wifi: 31.13.81.33:443
+                        //LTE: 31.13.81.33:443
+                        if (isTargetServer(tcpflows[flowno].svrip, tcpflows[flowno].svrport) && \
+                            (tcpflows[flowno].period_datacnt>0) && \
+                            (maxpktcnt < tcpflows[flowno].period_pktcnt)){
+                            tarflowno=flowno;
+                            maxpktcnt=tcpflows[flowno].period_pktcnt;
+                        }
+              //          char resclt[3000];
+              //      getStrAddr(tcpflows[flowno].cltip,resclt);
+                    if (tcpflows[flowno].period_datacnt>0){
+                        consideredflows.push_back(flowno);
+                        /*
+                        printf("No.%d: src: %s:%d dst: %s:%d pktcnt: %d datalen: %d newflow: %d\n",i,\
+                               tcpflows[flowno].cltip.c_str(),tcpflows[flowno].cltport, \
+                               tcpflows[flowno].svrip.c_str(),tcpflows[flowno].svrport, \
+                               tcpflows[flowno].period_pktcnt, tcpflows[flowno].period_datacnt, \
+                               (tcpflows[flowno].syntime >= latencySTime));
+                        vector<char*> outputvec=getDNSNames(tcpflows[flowno].svrip);
+                        for (int tt=0;tt<outputvec.size();tt++){
+                            printf("%s; ",outputvec[tt]);
+                        }
+                        printf("\n");
+                        */
+                    }
+
+
+                    }
+
+                    if (tarflowno!=-1){
+
+                    double endtoendlatency=apptime-latencySTime;
+
+                    double ui_before=tcpflows[tarflowno].period_firstpacketarrivaltime-latencySTime;
+                    double ui_after=apptime-tcpflows[tarflowno].period_lastdatapacketarrivaltime;
+                 //   if (ui_after>=100){
+      //           if (ui_before>=0 && ui_after>=0 && tcpflows[tarflowno].period_lastdatapacketarrivaltime!=-1 \
+        //             && tcpflows[tarflowno].period_lastdatapacketarrivaltime-tcpflows[tarflowno].period_firstpacketarrivaltime<5){
+               /*     char resclt[3000];
+                    getStrAddr(tcpflows[tarflowno].cltip,resclt);
+                    char ressvr[3000];
+                    getStrAddr(tcpflows[tarflowno].svrip,ressvr);
+
+                    printf("Flow for list_update %lf %lf delta %lf:\n",latencySTime,apptime,ui_before+ui_after);
+                    printf("first: %lf last: %lf delta: %lf\n",tcpflows[tarflowno].period_firstpacketarrivaltime,tcpflows[tarflowno].period_lastdatapacketarrivaltime,tcpflows[tarflowno].period_lastdatapacketarrivaltime-tcpflows[tarflowno].period_firstpacketarrivaltime);
+                    printf("src: %s:%d dst: %s:%d pktcnt: %d datalen: %d ",\
+                           resclt,tcpflows[tarflowno].cltport, \
+                           ressvr,tcpflows[tarflowno].svrport, \
+                           tcpflows[tarflowno].period_pktcnt, tcpflows[tarflowno].period_datacnt);
+                    printf("ui_before: %f ui_after: %f clt: %d %d svr %d %d\n",\
+                           ui_before,ui_after, \
+                           tcpflows[tarflowno].period_cltsndnum, tcpflows[tarflowno].period_cltsndbytes,\
+                           tcpflows[tarflowno].period_svrsndnum, tcpflows[tarflowno].period_svrsndbytes);
+                    printf("\n");
+                    */
+
+
+
+             //    if (endtoendlatency <= 5){
+                    periodnum++;
+                    period_ui_before+=ui_before;
+                    period_ui_after+=ui_after;
+                    period_pktcnt+=tcpflows[tarflowno].period_pktcnt;
+                    period_datacnt+=tcpflows[tarflowno].period_datacnt;
+                    period_cltsndnum+=tcpflows[tarflowno].period_cltsndnum;
+                    period_svrsndnum+=tcpflows[tarflowno].period_svrsndnum;
+                    period_cltsndbytes+=tcpflows[tarflowno].period_cltsndbytes;
+                    period_svrsndbytes+=tcpflows[tarflowno].period_svrsndbytes;
+                    period_net_time+=tcpflows[tarflowno].period_lastdatapacketarrivaltime-tcpflows[tarflowno].period_firstpacketarrivaltime;
+                    period_ui_time+=ui_before+ui_after;
+           //      }
+                 }
+
+                    latencySTime=-1;
+                    latencySTestname.assign("-1");
+                    latencySAction.assign("-1");
+
+                    for (int i=0;i<flowNoInLatency.size();i++){
+                        tcpflows[flowNoInLatency[i]].endPeriodCollect();
+                    }
+
+
+                }
+     //       }
+     //   }
+     //   printf("%d %s %s %s\n",timestmp,testname,action,status);
+    }
+    return (latencySTime!=-1);
+}
+
+void TraceAnalyze::handleTCPFlow(string ip_src, string ip_dst, int ippayloadlen, struct tcphdr* tcphdr, double ts, int pcappktcnt, bool inlatency){
    int belongsToSomeone=0;
    for (int i=0;i<tcpflows.size();i++){
        if (tcpflows[i].tcpconnstate<TCPCONSTATE_FIN \
             && tcpflows[i].tcpconnstate>=TCPCONSTATE_CLOSED \
             && tcpflows[i].isMyPacket(ip_src,ip_dst, tcphdr)==1){
 
-           tcpflows[i].addPacket(ip_src,ip_dst, ippayloadlen, tcphdr,ts);
+           if (inlatency){
+           //printf("pkt # %d into latency set %d %d\n",pktcnt,i,flowNoInLatency.size());
+             addToVectorNoDup(flowNoInLatency,i);
+             tcpflows[i].addPacket(ip_src,ip_dst, ippayloadlen, tcphdr, ts, pcappktcnt, inlatency);
+           }
+           else {
+            tcpflows[i].addPacket(ip_src,ip_dst, ippayloadlen, tcphdr,ts, pcappktcnt, inlatency);
+           }
            belongsToSomeone=1;
        }
    }
@@ -218,7 +420,13 @@ void TraceAnalyze::handleTCPFlow(string ip_src, string ip_dst, int ippayloadlen,
    if (belongsToSomeone==0 && TCPFlowStat::isNewFlow(ip_src,ip_dst,tcphdr)==1){
        struct TCPFlowStat tfs;
        tfs.clearData();
-       tfs.addPacket(ip_src,ip_dst, ippayloadlen, tcphdr,ts);
+       if (inlatency){
+           addToVectorNoDup(flowNoInLatency,tcpflows.size());
+           tfs.addPacket(ip_src,ip_dst, ippayloadlen, tcphdr,ts, pcappktcnt, inlatency);
+       }
+       else {
+           tfs.addPacket(ip_src,ip_dst, ippayloadlen, tcphdr,ts, pcappktcnt, inlatency);
+       }
        tcpflows.push_back(tfs);
    }
 
@@ -234,6 +442,74 @@ void TraceAnalyze::handleTCPFlow(string ip_src, string ip_dst, int ippayloadlen,
                    break;
    }
 */
+}
+
+void TraceAnalyze::handleDNS(struct DNS_HEADER * dns, double ts){
+       if (dns->qr == 0){
+    //       printf("DNS query.\n");
+//cout <<"here5!\n";
+           if (dns->q_count>0){
+           //    printf("qc: %d.\n",dns->q_count);
+           //    struct DNSQueryComb* newq=(struct DNSQueryComb*)malloc(sizeof(struct DNSQueryComb));
+               struct DNSQueryComb newq;
+               newq.clearData();
+               newq.ts=ts;
+               newq.trxid=dns->id;
+               int offset;
+               getQueryString((char *)dns+sizeof(struct DNS_HEADER), dns->q_count, newq, offset);
+               dnsquery.push_back(newq);
+           }
+
+       }
+       if (dns->qr == 1){
+    //       cout <<"here6!\n";
+    //      printf("DNS response.\n");
+
+          if (dns->q_count>0){
+      //        cout <<"here7!\n";
+      //        struct DNSQueryComb* newq=(struct DNSQueryComb*)malloc(sizeof(struct DNSQueryComb));
+              struct DNSQueryComb newq;
+              newq.clearData();
+              newq.trxid=dns->id;
+              int offset;
+              char* endquery=getQueryString((char *)dns+sizeof(struct DNS_HEADER), dns->q_count, newq, offset);
+              offset+=sizeof(struct DNS_HEADER);
+          //    printf("%x %x\n", (unsigned char)(*endquery), (unsigned char)(*(endquery+1)));
+
+//cout <<pktcnt<<" off: "<<offset<<" here8!\n";
+          //    struct DNSQueryComb* newansq=(struct DNSQueryComb*)malloc(sizeof(struct DNSQueryComb));
+              struct DNSQueryComb newansq;
+              newansq.clearData();
+              newansq.trxid=dns->id;
+              getAnswerString((unsigned char*)endquery, (unsigned char*)dns, dns->ans_count, newansq);
+              //resolve previous queries
+              for (int i=0;i<dnsquery.size();i++){
+                  if (newq.trxid == dnsquery[i].trxid){
+                      if (dnsquery[i].deleteurl(newq, newansq)==1){
+
+                          newansq.ts=ts-(dnsquery[i]).ts;
+                          ansdnsquery.push_back(newansq);
+              /*             printf("%f %f %f\n",dnsquery[i]->ts, ts, newansq->ts);
+                          for (int j=0;j<newansq->urlsnum;j++)
+                            printf("%s\n",newansq->urls[j]);
+              */
+
+                          if (dnsquery[i].urlsnum==0){
+                            dnsquery.erase(dnsquery.begin()+i);
+                            break;
+                          };
+
+
+                      };
+
+
+                  }
+              }
+          //    cout <<"here11!\n";
+          };
+
+
+       };
 }
 
 void TraceAnalyze::feedTracePacket(Context ctx, const struct pcap_pkthdr *header, const u_char *pkt_data) {
@@ -259,9 +535,13 @@ void TraceAnalyze::feedTracePacket(Context ctx, const struct pcap_pkthdr *header
        }
     }
     lastPacketArriveTime=ts;
+//    if (pktcnt==1)
+//    printf("pkt #:%d Frame ts: %f\n",pktcnt, ts);
  //   printf("Frame ts: %f\n",ts);
  //   printf("Frame caplen: %d bytes\n",header->caplen);
  //   printf("Frame len: %d bytes\n",header->len);
+
+    bool inlatency=handleBreakdown(ctx, ts);
 
 
     u_short ethertype=bswap16(*((u_short*)(pkt_data+ctx.getEtherLen()-2)));
@@ -291,7 +571,19 @@ void TraceAnalyze::feedTracePacket(Context ctx, const struct pcap_pkthdr *header
                    struct tcphdr* tcphdr=(struct tcphdr*)(etherdatap+ip->ip_hl*4);
                    bswapTCP(tcphdr);
 
-                   handleTCPFlow(ip_src, ip_dst, ip->ip_len-ip->ip_hl*4, tcphdr, ts);
+                /*
+                   //appname
+                   int appIndex = *((u_short *)(pkt_data + 6)) & 0xFF;
+                   string appName("none");
+                   //cout << "1I am here!!!!" << endl;
+                   //cout << ctx.getAppNameMap().size() << endl;
+                   //cout << "2I am here!!!!" << endl;
+                   if (appIndex < ctx.getAppNameMap().size()) {
+                        appName.assign(ctx.getAppNameByIndex(appIndex));
+                   }
+                   */
+
+                   handleTCPFlow(ip_src, ip_dst, ip->ip_len-ip->ip_hl*4, tcphdr, ts, pktcnt, inlatency);
 
               //     printf("dport: %d \n",tcphdr->dest);
 
@@ -314,70 +606,7 @@ void TraceAnalyze::feedTracePacket(Context ctx, const struct pcap_pkthdr *header
 
                        struct DNS_HEADER * dns = (struct DNS_HEADER *)(etherdatap+ip->ip_hl*4+sizeof (struct udphdr));
                        bswapDNS(dns);
-                       if (dns->qr == 0){
-                        //   printf("DNS query.\n");
-//cout <<"here5!\n";
-                           if (dns->q_count>0){
-                           //    printf("qc: %d.\n",dns->q_count);
-                           //    struct DNSQueryComb* newq=(struct DNSQueryComb*)malloc(sizeof(struct DNSQueryComb));
-                               struct DNSQueryComb newq;
-                               newq.clearData();
-                               newq.ts=ts;
-                               newq.trxid=dns->id;
-                               int offset;
-                               getQueryString((char *)dns+sizeof(struct DNS_HEADER), dns->q_count, newq, offset);
-                               dnsquery.push_back(newq);
-                           }
-
-                       }
-                       if (dns->qr == 1){
-                    //       cout <<"here6!\n";
-                    //      printf("DNS response.\n");
-
-                          if (dns->q_count>0){
-                      //        cout <<"here7!\n";
-                      //        struct DNSQueryComb* newq=(struct DNSQueryComb*)malloc(sizeof(struct DNSQueryComb));
-                              struct DNSQueryComb newq;
-                              newq.clearData();
-                              newq.trxid=dns->id;
-                              int offset;
-                              char* endquery=getQueryString((char *)dns+sizeof(struct DNS_HEADER), dns->q_count, newq, offset);
-                              offset+=sizeof(struct DNS_HEADER);
-                          //    printf("%x %x\n", (unsigned char)(*endquery), (unsigned char)(*(endquery+1)));
-
-//cout <<pktcnt<<" off: "<<offset<<" here8!\n";
-                          //    struct DNSQueryComb* newansq=(struct DNSQueryComb*)malloc(sizeof(struct DNSQueryComb));
-                              struct DNSQueryComb newansq;
-                              newansq.clearData();
-                              newansq.trxid=dns->id;
-                           //   cout <<"here10!\n";
-                              getAnswerString((unsigned char*)endquery, (unsigned char*)dns, dns->ans_count, newansq);
-                          //    cout <<"here9!\n";
-                              //resolve previous queries
-                              for (int i=0;i<dnsquery.size();i++){
-                                  if (newq.trxid == dnsquery[i].trxid){
-                                      if (dnsquery[i].deleteurl(newq, newansq)==1){
-                                          newansq.ts=ts-(dnsquery[i]).ts;
-                                          ansdnsquery.push_back(newansq);
-                              /*             printf("%f %f %f\n",dnsquery[i]->ts, ts, newansq->ts);
-                                          for (int j=0;j<newansq->urlsnum;j++)
-                                            printf("%s\n",newansq->urls[j]);
-                              */
-                                          if (dnsquery[i].urlsnum==0){
-                                            dnsquery.erase(dnsquery.begin()+i);
-                                            break;
-                                          }
-
-                                      };
-
-
-                                  }
-                              }
-                       //       cout <<"here10!\n";
-                          };
-
-
-                       };
+                       handleDNS(dns, ts);
                    };
 
 
@@ -416,11 +645,21 @@ void TraceAnalyze::feedTracePacket(Context ctx, const struct pcap_pkthdr *header
                    struct tcphdr* tcphdr=(struct tcphdr*)(etherdatap+40);
                    bswapTCP(tcphdr);
 
-                   handleTCPFlow(ip_src, ip_dst, ip6->ip6_ctlun.ip6_un1.ip6_un1_plen, tcphdr, ts);
+                   handleTCPFlow(ip_src, ip_dst, ip6->ip6_ctlun.ip6_un1.ip6_un1_plen, tcphdr, ts, pktcnt, inlatency);
 
                 };break;
                 case 0x11: {
                 //UDP
+                   struct udphdr* udphdr=(struct udphdr*)(etherdatap+40);
+                   bswapUDP(udphdr);
+
+                   if (udphdr->dest==0x35 || udphdr->source==0x35){
+               //        cout <<"DNS "<<pktcnt<<"\n";
+
+                       struct DNS_HEADER * dns = (struct DNS_HEADER *)(etherdatap+40+sizeof (struct udphdr));
+                       bswapDNS(dns);
+                       handleDNS(dns, ts);
+                   };
                 };break;
                 case 0x3a: {
                 //ICMP

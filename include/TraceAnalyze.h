@@ -26,14 +26,29 @@ private:
     double aveInterPacketArriveTime;
     double lastPacketArriveTime;
 
+    double flowExpireTime;
+    double latencySTime;
+    string latencySTestname;
+    string latencySAction;
+    double latencySInd;
+    vector<int> flowNoInLatency;
+
 public:
     int gt5pktcnt;
     RRCStateMachine rrcstate;
     deque<struct TCPFlowStat> tcpflows;
     vector<struct DNSQueryComb> ansdnsquery;
     vector<string> gt5state;
+
+    //period accounting
+    double periodnum;
+    int period_pktcnt,period_datacnt;
+    int period_cltsndbytes,period_svrsndbytes,period_cltsndnum,period_svrsndnum;
+    double period_ui_before, period_ui_after,period_net_time,period_ui_time;
+
     TraceAnalyze();
     void clearData();
+    void addToVectorNoDup(vector<int> &vec, int val);
     void printTitle(ofstream &output);
     int printLine(ofstream &output,int i);
     void getStrAddr(long ip, char* res);
@@ -42,7 +57,10 @@ public:
     void bswapTCP(tcphdr* tcphdr);
     void bswapUDP(udphdr* udphdr);
     void bswapDNS(struct DNS_HEADER* dnshdr);
-    void handleTCPFlow(string ip_src, string ip_dst, int ippayloadlen, struct tcphdr* tcphdr, double ts);
+    vector<char*> getDNSNames(string svrip);
+    bool handleBreakdown(Context &ctx, double ts);
+    void handleTCPFlow(string ip_src, string ip_dst, int ippayloadlen, struct tcphdr* tcphdr, double ts, int pcappktcnt, bool inlatency);
+    void handleDNS(struct DNS_HEADER * dns, double ts);
     void feedTracePacket(Context ctx, const struct pcap_pkthdr *header, const u_char *pkt_data);
 
 };

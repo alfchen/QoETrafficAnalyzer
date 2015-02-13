@@ -38,3 +38,23 @@ string Context::getAppNameByIndex(int index){
 
     return appNameMap.at(index);
 }
+
+
+vector<string> Context::getAppBehaviorLog(){
+    return appBehaviorLog;
+}
+
+void Context::addAppBehavior(string appbehavior){
+    appBehaviorLog.push_back(appbehavior);
+}
+
+void Context::clearAppBehaviorLog(){
+    appBehaviorLog.clear();
+}
+
+string Context::getAppBehaviorByIndex(int index){
+//empty if the index is not valid
+    if (index <0 || index>=appBehaviorLog.size()) return "";
+
+    return appBehaviorLog.at(index);
+}

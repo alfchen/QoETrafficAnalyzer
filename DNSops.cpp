@@ -92,7 +92,7 @@ char * getStrAddr(long ip){
 
 
 void getAnswerString(unsigned char* ansstr,unsigned char* buf, int ansnum, struct DNSQueryComb &newq){
- //   printf("ans cnt:%d\n", ansnum);
+  //  printf("ans cnt:%d\n", ansnum);
   //  printf("wuha\n");
     struct RES_RECORD answers[20];
 	//Start reading answers
@@ -101,6 +101,7 @@ void getAnswerString(unsigned char* ansstr,unsigned char* buf, int ansnum, struc
 	{
 	//    printf("haha\n");
 		answers[i].name=ReadName(ansstr,buf,&stop);
+	//	printf("name: %s\n", answers[i].name);
 		if (strlen((const char*)answers[i].name)==0)
 		  break;
 
@@ -126,15 +127,46 @@ void getAnswerString(unsigned char* ansstr,unsigned char* buf, int ansnum, struc
 			char ipaddr[3000];
             inet_ntop(AF_INET, &(p), ipaddr, INET_ADDRSTRLEN);
             string ip_src(ipaddr);
-       //     printf("has IPv4 address : %s in %d\n",ip_src.c_str(),newq.ansnum);
+        //    printf("has IPv4 address : %s in %d\n",ip_src.c_str(),newq.ansnum);
             newq.ansips[newq.ansnum++]=ip_src;
 		}
 		else
+        if(ntohs(answers[i].resource->type) == 0x1c) //if its an ipv4 address
 		{
-	//	    printf("paha\n");
-			answers[i].rdata = ReadName(ansstr, buf,&stop);
+		//    printf("ipv6\n");
+		    answers[i].rdata = (unsigned char*)malloc(ntohs(answers[i].resource->data_len));
+
+			for(int j=0 ; j<ntohs(answers[i].resource->data_len) ; j++){
+				answers[i].rdata[j]=ansstr[j];
+			}
+
+			answers[i].rdata[ntohs(answers[i].resource->data_len)] = '\0';
+			ansstr = ansstr + ntohs(answers[i].resource->data_len);
+
+		//	long p=ntohl(*((long*)answers[i].rdata));
+			char ipaddr[3000];
+            inet_ntop(AF_INET6, answers[i].rdata, ipaddr, INET6_ADDRSTRLEN);
+            string ip_src(ipaddr);
+        //    printf("has IPv6 address : %s in %d\n",ip_src.c_str(),newq.ansnum);
+            newq.ansips[newq.ansnum++]=ip_src;
+		}
+        else
+        if(ntohs(answers[i].resource->type) == 0x05) //if its an CNAME
+		{
+		    answers[i].rdata = ReadName(ansstr, buf,&stop);
+        //    printf("has cname : %s in %d, num: %d\n",answers[i].rdata, newq.urlsnum);
+            int rdatalen=strlen((const char*)answers[i].rdata)+1;
+            newq.urls[newq.urlsnum]=(char*)malloc(rdatalen);
+            strcpy(newq.urls[newq.urlsnum], (const char*)(answers[i].rdata));
+            newq.urlsnum++;
 			ansstr = ansstr + stop;
 		}
-		break;
+		else
+		{
+		    printf("unknown DNS type %d\n",ntohs(answers[i].resource->type));
+		    int datalen = ntohs(answers[i].resource->data_len);
+			ansstr = ansstr + datalen;
+		}
+	//	break;
 	}
 }
